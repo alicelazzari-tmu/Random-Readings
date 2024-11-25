@@ -185,6 +185,13 @@
       showRecover.style.display = "flex"; // this show the recuperation form
       loginForm.style.display = "flex"; // this show the login forn again
     });
+
+    // Handle login form submission
+  loginForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent the actual form submission (simulated)
+    
+    // Redirect to "Home"
+    window.location.href = "home.html"; // here is the link to home if we need change we change here
   </script>
 
 </body>
