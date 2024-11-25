@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pick Article</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: white;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        align-items: center;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      .main-title {
+        text-align: center;
+        color: rgb(0, 77, 51);
+        font-size: 48px;
+        margin: 40px 0;
+      }
+
+      .article-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .article-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .article-card {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 10px;
+        border-radius: 15px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgb(214, 214, 214);
+        overflow: hidden;
+        width: 300px;
+        height: fit-content;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      #article-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-wrap: wrap;
+        color: green;
+        width: 100%;
+      }
+
+      #content-preview {
+        font-size: 16px;
+        font-weight: lighter;
+        color: rgb(102, 102, 102);
+        text-wrap: wrap;
+      }
+
+      #cover-image {
+        height: 200px;
+        width: 450px;
+        border-radius: 10px;
+        width: 100%;
+      }
+
+      .article-card:hover {
+        transform: scale(1.02);
+      }
+
+      #back-button {
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 15px;
+        border-radius: 10px;
+        background-color: white;
+        color: black;
+        border-color: rgb(0, 153, 0);
+        border-width: 2px;
+        border-style: solid;
+      }
+
+      #back-button:hover {
+        cursor: pointer;
+      }
+
+      #suggest-button:hover {
+        cursor: pointer;
+      }
+
+      #suggest-button {
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 15px;
+        border-radius: 10px;
+        background-color: rgb(0, 153, 0);
+        color: white;
+        border-color: rgb(0, 153, 0);
+        border-width: 2px;
+        border-style: solid;
+      }
+
+      .button-panel {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        width: 100%;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1400px) {
+        .article-container {
+          max-width: 800px;
+        }
+      }
+
+      @media (max-width: 1000px) {
+        .article-container {
+          max-width: 540px;
+        }
+        .article-card {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .article-container {
+          max-width: 520px;
+        }
+        .article-card {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1>Random Readings</h1>
+      <div class="profile">
+        <img src="/api/placeholder/40/40" alt="Profile" />
+        <span>Michael Scott</span>
+      </div>
+    </header>
+
+    <h2 class="main-title">Select an Article</h2>
+
+    <div class="article-container">
+      <div class="button-panel">
+        <a href="/home.html">
+          <div id="back-button">
+            <img id="btn-icon" src="/imagesRR/arrow-left.svg" />
+            <p id="btn-label">Back to Interests</p>
+          </div>
+        </a>
+        <div id="suggest-button">
+          <img id="btn-icon" src="/imagesRR/refresh-ccw.svg" />
+          <p id="btn-label">Suggest Again</p>
+        </div>
+      </div>
+      <div class="article-grid">
+        <div class="article-card" id="a1">
+          <img
+            id="cover-image"
+            src="https://images.unsplash.com/photo-1704394347149-f75a4ca6200c?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Article 1"
+          />
+          <p id="article-title">Title of the Article</p>
+          <p id="content-preview">
+            Loreknsdjvnsjdnvjsndn adlknlkdnv ddlknvkdnv ad vald vla dvj adjv jod
+            jad o dv od dvdvsdv dvod vod vodvdv dvoadvdvdv advdv dv dvadvadv
+          </p>
+        </div>
+        <div class="article-card" id="a2">
+          <img
+            id="cover-image"
+            src="https://images.unsplash.com/photo-1704394347149-f75a4ca6200c?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Article 1"
+          />
+          <p id="article-title">Title of the Article</p>
+          <p id="content-preview">
+            Loreknsdjvnsjdnvjsndn adlknlkdnv ddlknvkdnv ad vald vla dvj adjv jod
+            jad o dv od dvdvsdv dvod vod vodvdv dvoadvdvdv advdv dv dvadvadv
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    var backBtn = document.getElementById("back-button");
+    var suggestBtn = document.getElementById("suggest-button");
+    var article1Card = document.getElementById("a1");
+    var article2Card = document.getElementById("a2");
+
+    suggestBtn.addEventListener("mouseup", () => suggestBtnMouseUp());
+
+    function suggestBtnMouseUp() {
+      createSuggestion();
+      populateCards();
+      console.log("Suggest requested");
+    }
+
+    function populateCards() {
+      var pickedArticlesData = JSON.parse(
+        sessionStorage.getItem("pickedArticles")
+      );
+      var ar1Data = [];
+      var ar2Data = [];
+
+      articlesData = JSON.parse(localStorage.getItem("articles"));
+
+      for (let i = 0; i < articlesData.length; i++) {
+        if (pickedArticlesData[0] == articlesData[i]["id"]) {
+          ar1Data = articlesData[i];
+        }
+      }
+
+      for (let i = 0; i < articlesData.length; i++) {
+        if (pickedArticlesData[1] == articlesData[i]["id"]) {
+          ar2Data = articlesData[i];
+        }
+      }
+
+      if (pickedArticlesData.length == 2) {
+        document.querySelector("#a1 #article-title").textContent =
+          ar1Data["title"];
+        document.querySelector("#a2 #article-title").textContent =
+          ar2Data["title"];
+
+        document.querySelector("#a1 #content-preview").textContent =
+          ar1Data["previewtxt"];
+        document.querySelector("#a2 #content-preview").textContent =
+          ar2Data["previewtxt"];
+
+        document.querySelector("#a1 #cover-image").src = ar1Data["coverimg"];
+        document.querySelector("#a2 #cover-image").src = ar2Data["coverimg"];
+      } else if (pickedArticlesData.length == 1) {
+        document.querySelector("#a1 #article-title").textContent =
+          ar1Data["title"];
+        document.querySelector("#a1 #content-preview").textContent =
+          ar1Data["previewtxt"];
+        document.querySelector("#a1 #cover-image").src = ar1Data["coverimg"];
+
+        document.querySelector("#a2").remove();
+      } else {
+        document.querySelector("#a1").remove();
+        document.querySelector("#a2").remove();
+
+        var parentGrid = document.querySelector(".article-grid");
+        var pText = document.createElement("p");
+
+        pText.textContent =
+          "No more articles can be suggested for your current preferences. Please select new interests";
+        pText.style.fontSize = 24;
+
+        parentGrid.appendChild(pText);
+      }
+    }
+
+    populateCards();
+
+    function markRecommended(articleID) {
+      if (!sessionStorage.getItem("recommendedArticles")) {
+        var payload = [articleID];
+        sessionStorage.setItem("recommendedArticles", JSON.stringify(payload));
+      } else {
+        var recommendedArticles = JSON.parse(
+          sessionStorage.getItem("recommendedArticles")
+        );
+        if (!recommendedArticles.includes(articleID)) {
+          recommendedArticles.push(articleID);
+          sessionStorage.setItem(
+            "recommendedArticles",
+            JSON.stringify(recommendedArticles)
+          );
+        }
+      }
+    }
+
+    function markPicked(articleID) {
+      if (!sessionStorage.getItem("pickedArticles")) {
+        var payload = [articleID];
+        sessionStorage.setItem("pickedArticles", JSON.stringify(payload));
+      } else {
+        var pickedArticles = JSON.parse(
+          sessionStorage.getItem("pickedArticles")
+        );
+        if (pickedArticles.length < 2) {
+          pickedArticles.push(articleID);
+          sessionStorage.setItem(
+            "pickedArticles",
+            JSON.stringify(pickedArticles)
+          );
+        } else {
+          pickedArticles = [];
+          pickedArticles.push(articleID);
+          sessionStorage.setItem(
+            "pickedArticles",
+            JSON.stringify(pickedArticles)
+          );
+        }
+      }
+    }
+
+    function selectArticle1(result) {
+      recommendedArticlesData = JSON.parse(
+        sessionStorage.getItem("recommendedArticles")
+      );
+
+      var x = 1;
+
+      for (let i = 1; i < result.length; i++) {
+        if (result[0]["score"] == result[i]["score"]) {
+          x = x + 1;
+        }
+      }
+
+      var count = [];
+
+      while (count.length < x) {
+        var randIndex = Math.floor(Math.random() * (x - 0) + 0);
+
+        if (!count.includes(randIndex)) {
+          count.push(randIndex);
+        }
+
+        if (!recommendedArticlesData.includes(result[randIndex]["id"])) {
+          markRecommended(result[randIndex]["id"]);
+          markPicked(result[randIndex]["id"]);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function selectArticle2(result) {
+      recommendedArticlesData = JSON.parse(
+        sessionStorage.getItem("recommendedArticles")
+      );
+
+      var x = 1;
+
+      for (let i = 2; i < result.length; i++) {
+        if (result[0]["score"] == result[i]["score"]) {
+          x = x + 1;
+        }
+      }
+
+      var count = [];
+
+      while (count.length < x) {
+        var randIndex = Math.floor(Math.random() * (x - 0) + 0);
+
+        if (!count.includes(randIndex)) {
+          count.push(randIndex);
+        }
+
+        if (!recommendedArticlesData.includes(result[randIndex]["id"])) {
+          markRecommended(result[randIndex]["id"]);
+          markPicked(result[randIndex]["id"]);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function createSuggestion() {
+      var resultArray = [];
+      var tagsData = [];
+      var articlesData = JSON.parse(localStorage.getItem("articles"));
+      var userPreference = JSON.parse(sessionStorage.getItem("userpreference"));
+
+      for (let i = 0; i < articlesData.length; i++) {
+        var payload = {
+          id: articlesData[i]["id"],
+          tags: articlesData[i]["tags"],
+        };
+        tagsData.push(payload);
+      }
+
+      const userPreferenceSet = new Set(userPreference);
+
+      for (let i = 0; i < tagsData.length; i++) {
+        const tagsDataSet = new Set(tagsData[i]["tags"]);
+
+        const intersectionSet = new Set(
+          [...userPreferenceSet].filter((x) => tagsDataSet.has(x))
+        );
+
+        const unionSet = new Set([...userPreferenceSet, ...tagsDataSet]);
+
+        const recScore = (intersectionSet.size / unionSet.size) * 100;
+
+        var payload = {
+          id: tagsData[i]["id"],
+          score: recScore,
+        };
+        resultArray.push(payload);
+      }
+      resultArray.sort((a, b) => b.score - a.score);
+      console.log("resultArray = ", resultArray);
+
+      if (selectArticle1(resultArray)) {
+        selectArticle2(resultArray);
+      }
+    }
+  </script>
+</html>

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Readings</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: white;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        align-items: center;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      .main-title {
+        text-align: center;
+        color: rgb(0, 77, 51);
+        font-size: 48px;
+        margin: 40px 0;
+      }
+
+      .topics-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .topics-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .topic-card {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        width: 300px;
+        aspect-ratio: 16/9;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        flex: 0 0 auto;
+      }
+
+      .topic-card:hover {
+        transform: scale(1.02);
+      }
+
+      .topic-card.selected {
+        border: 4px solid rgb(0, 153, 0); /* Add a border to indicate selection */
+        transform: scale(1.05); /* Slightly enlarge the selected card */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .topic-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .topic-label {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-size: 18px;
+      }
+
+      .confirm-topics {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 40px;
+      }
+
+      #continue-btn {
+        font-size: 24px;
+        padding: 10px 15px;
+        border-radius: 10px;
+        background-color: rgb(0, 153, 0);
+        color: azure;
+        cursor: pointer;
+        border-style: none;
+      }
+
+      #continue-btn:disabled {
+        font-size: 24px;
+        padding: 10px 15px;
+        border-radius: 10px;
+        background-color: rgb(223, 223, 223);
+        color: grey;
+        cursor: not-allowed;
+        border-style: none;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1400px) {
+        .topics-container {
+          max-width: 1000px;
+        }
+      }
+
+      @media (max-width: 1000px) {
+        .topics-container {
+          max-width: 640px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .topics-container {
+          max-width: 320px;
+        }
+        .topic-card {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1>Random Readings</h1>
+      <div class="profile">
+        <img src="#" alt="Profile" />
+        <span>Michael Scott</span>
+      </div>
+    </header>
+
+    <h2 class="main-title">Choose your topic</h2>
+
+    <div class="topics-container">
+      <div class="topics-grid">
+        <div class="topic-card" id="scifi">
+          <img
+            src="https://images.unsplash.com/photo-1704394347149-f75a4ca6200c?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Sci-fi"
+          />
+          <div class="topic-label">Sci-fi</div>
+        </div>
+        <div class="topic-card" id="history">
+          <img
+            src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?q=80&w=2974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="History"
+          />
+          <div class="topic-label">History</div>
+        </div>
+        <div class="topic-card" id="science">
+          <img
+            src="https://images.unsplash.com/photo-1532187643603-ba119ca4109e?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Science"
+          />
+          <div class="topic-label">Science</div>
+        </div>
+        <div class="topic-card" id="drama">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1664302637848-6ae0d5821944?q=80&w=2972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Drama"
+          />
+          <div class="topic-label">Drama</div>
+        </div>
+        <div class="topic-card" id="mystery">
+          <img
+            src="https://images.unsplash.com/photo-1462293781490-9637490a111d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Mystery"
+          />
+          <div class="topic-label">Mystery</div>
+        </div>
+        <div class="topic-card" id="fantasy">
+          <img
+            src="https://images.unsplash.com/photo-1560942485-b2a11cc13456?q=80&w=2865&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Fantasy"
+          />
+          <div class="topic-label">Fantasy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="confirm-topics">
+      <a href="/pickarticle.html">
+        <button id="continue-btn" disabled>Continue</button>
+      </a>
+    </div>
+  </body>
+
+  <script>
+    var historyBtn = document.getElementById("history");
+    var scienceBtn = document.getElementById("science");
+    var scifiBtn = document.getElementById("scifi");
+    var dramaBtn = document.getElementById("drama");
+    var fantasyBtn = document.getElementById("fantasy");
+    var mysteryBtn = document.getElementById("mystery");
+    var continueBtn = document.getElementById("continue-btn");
+    sessionStorage.clear();
+
+    function continueBtnMonitor() {
+      var data = JSON.parse(sessionStorage.getItem("userpreference"));
+      if (data.length != 0) {
+        continueBtn.disabled = false;
+      } else {
+        continueBtn.disabled = true;
+      }
+    }
+
+    function initRecommendedArticles() {
+      payload = [];
+      sessionStorage.setItem("recommendedArticles", JSON.stringify(payload));
+    }
+
+    function populateArticles() {
+      var articles = [
+        {
+          id: "0001",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+          title: "The Mysteries of Black Holes",
+          previewtxt:
+            "Explore how black holes form and their role in the universe.",
+          tags: ["science"],
+          content:
+            "Black holes are formed from collapsing stars, creating regions of space where gravity is so intense that not even light can escape.",
+        },
+        {
+          id: "0002",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Science of Climate Change",
+          previewtxt:
+            "An overview of the factors contributing to global warming.",
+          tags: ["science"],
+          content:
+            "Climate change is driven by greenhouse gas emissions, leading to rising temperatures and extreme weather events.",
+        },
+        {
+          id: "0003",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "CRISPR and Gene Editing",
+          previewtxt: "Discover the revolutionary technology of gene editing.",
+          tags: ["science"],
+          content:
+            "CRISPR technology allows scientists to edit genes with precision, promising advancements in medicine and agriculture.",
+        },
+        {
+          id: "0004",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Quantum Computing Explained",
+          previewtxt:
+            "Learn how quantum computers are changing the future of technology.",
+          tags: ["science"],
+          content:
+            "Quantum computers use quantum bits to solve problems much faster than traditional computers, revolutionizing industries.",
+        },
+        {
+          id: "0005",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Role of Vaccines in Public Health",
+          previewtxt:
+            "Understand how vaccines prevent diseases and save lives.",
+          tags: ["science"],
+          content:
+            "Vaccines work by training the immune system to recognize and fight harmful pathogens, reducing the spread of diseases.",
+        },
+        {
+          id: "0006",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Search for Extraterrestrial Life",
+          previewtxt:
+            "Are we alone in the universe? Scientists are on the hunt.",
+          tags: ["science"],
+          content:
+            "Researchers use advanced telescopes and probes to find signs of life on other planets and moons.",
+        },
+        {
+          id: "0007",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Chemistry of Everyday Life",
+          previewtxt:
+            "Explore the role of chemistry in the objects and processes around us.",
+          tags: ["science"],
+          content:
+            "From cooking to cleaning, chemistry is at work in countless daily activities, shaping the world we interact with.",
+        },
+        {
+          id: "0008",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Fall of the Roman Empire",
+          previewtxt:
+            "Explore the causes and events leading to the collapse of one of history's greatest empires.",
+          tags: ["history"],
+          content:
+            "The fall of the Roman Empire was caused by a mix of internal instability, economic decline, and invasions by barbarian tribes.",
+        },
+        {
+          id: "0009",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Industrial Revolution",
+          previewtxt:
+            "Learn about the transformative period that reshaped economies and societies across the world.",
+          tags: ["history"],
+          content:
+            "The Industrial Revolution, beginning in the late 18th century, marked a shift from agrarian economies to industrialized urban societies.",
+        },
+        {
+          id: "0010",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The American Revolution",
+          previewtxt:
+            "A look into the events and people that led to the formation of the United States.",
+          tags: ["history"],
+          content:
+            "The American Revolution was driven by colonial resistance to British rule, culminating in the independence of the United States.",
+        },
+        {
+          id: "0011",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "World War I: The Great War",
+          previewtxt:
+            "An overview of the causes, major battles, and consequences of World War I.",
+          tags: ["history"],
+          content:
+            "World War I was a devastating global conflict sparked by political alliances, imperialism, and the assassination of Archduke Franz Ferdinand.",
+        },
+        {
+          id: "0012",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Renaissance: Rebirth of Art and Knowledge",
+          previewtxt:
+            "Discover the cultural movement that revived interest in classical learning and led to significant advancements in art, science, and philosophy.",
+          tags: ["history"],
+          content:
+            "The Renaissance, which began in Italy in the 14th century, inspired great works of art and new thinking in science and philosophy.",
+        },
+        {
+          id: "0013",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Civil Rights Movement",
+          previewtxt:
+            "A pivotal era in American history that fought for equal rights for African Americans.",
+          tags: ["history"],
+          content:
+            "The Civil Rights Movement, led by figures like Martin Luther King Jr., fought against racial segregation and discrimination in the United States.",
+        },
+        {
+          id: "0014",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Cold War: A Global Conflict",
+          previewtxt:
+            "Explore the ideological, political, and military tension between the United States and the Soviet Union.",
+          tags: ["history"],
+          content:
+            "The Cold War was a period of intense rivalry between the U.S. and the Soviet Union, marked by proxy wars, nuclear arms races, and ideological conflict.",
+        },
+        {
+          id: "0015",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Shakespeare's Influence on Modern Drama",
+          previewtxt:
+            "Explore how William Shakespeare's works shaped contemporary theater.",
+          tags: ["drama"],
+          content:
+            "Shakespeare's plays revolutionized theater with complex characters, themes of human nature, and innovative use of language.",
+        },
+        {
+          id: "0016",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Rise of Greek Tragedy",
+          previewtxt:
+            "Discover the origins of Greek tragedy and its lasting impact on Western theater.",
+          tags: ["drama"],
+          content:
+            "Greek tragedies, such as those written by Sophocles and Euripides, set the foundation for dramatic storytelling and dramatic structure.",
+        },
+        {
+          id: "0017",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Birth of Modern Drama",
+          previewtxt:
+            "An overview of how modern drama emerged in the late 19th century.",
+          tags: ["drama"],
+          content:
+            "Modern drama, spearheaded by playwrights like Henrik Ibsen and Anton Chekhov, focused on realism and addressing social issues.",
+        },
+        {
+          id: "0018",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Theater of the Absurd",
+          previewtxt:
+            "Learn about the Theater of the Absurd and its critique of human existence.",
+          tags: ["drama"],
+          content:
+            "The Theater of the Absurd, pioneered by playwrights like Samuel Beckett, explores themes of existentialism and the meaninglessness of life.",
+        },
+        {
+          id: "0019",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Evolution of Musical Theater",
+          previewtxt:
+            "How musical theater transformed into a mainstream cultural phenomenon.",
+          tags: ["drama"],
+          content:
+            "Musical theater evolved in the early 20th century, blending song, dance, and dialogue to create an immersive storytelling experience.",
+        },
+        {
+          id: "0020",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Influence of Commedia dell'arte",
+          previewtxt:
+            "Explore the comedic traditions that influenced European theater.",
+          tags: ["drama"],
+          content:
+            "Commedia dell'arte, an improvisational Italian theater form, influenced modern comedy with its stock characters and physical humor.",
+        },
+        {
+          id: "0021",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Stanislavski and Method Acting",
+          previewtxt:
+            "An exploration of Konstantin Stanislavski’s method and its impact on acting techniques.",
+          tags: ["drama"],
+          content:
+            "Stanislavski’s system of method acting focused on emotional authenticity and the psychological preparation of the actor for deeper performances.",
+        },
+        {
+          id: "0022",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Physics of Time Travel",
+          previewtxt:
+            "Explore the scientific theories behind the possibility of time travel.",
+          tags: ["science", "scifi"],
+          content:
+            "Time travel, a popular concept in science fiction, is explored through theories like wormholes and the theory of relativity.",
+        },
+        {
+          id: "0023",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Artificial Intelligence in the Future",
+          previewtxt:
+            "How AI might shape the future of humanity and its ethical implications.",
+          tags: ["science", "scifi"],
+          content:
+            "AI is rapidly advancing, and its potential to revolutionize industries raises questions about its ethical and societal impacts.",
+        },
+        {
+          id: "0024",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Search for Extraterrestrial Intelligence",
+          previewtxt:
+            "The science and fiction behind the search for life beyond Earth.",
+          tags: ["science", "scifi"],
+          content:
+            "SETI uses radio telescopes to search for signals from extraterrestrial civilizations, while sci-fi imagines the possibilities of first contact.",
+        },
+        {
+          id: "0025",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Space Colonization: A Sci-Fi Reality?",
+          previewtxt:
+            "Can humanity one day colonize other planets? Explore both the scientific and fictional perspectives.",
+          tags: ["science", "scifi"],
+          content:
+            "Space colonization is a hot topic in both science and sci-fi, with plans for Mars colonies and visions of future galactic exploration.",
+        },
+        {
+          id: "0026",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Lost City of Atlantis",
+          previewtxt:
+            "Explore the mystery behind the legendary lost city of Atlantis.",
+          tags: ["history", "mystery"],
+          content:
+            "The story of Atlantis, first told by Plato, has fascinated historians and explorers, though its existence remains unproven.",
+        },
+        {
+          id: "0027",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Disappearance of the Roanoke Colony",
+          previewtxt:
+            "What happened to the lost colony of Roanoke? Theories abound.",
+          tags: ["history", "mystery"],
+          content:
+            "The Roanoke Colony mysteriously vanished in the late 16th century, leaving behind only cryptic clues and theories about their fate.",
+        },
+        {
+          id: "0028",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Curse of the Pharaohs",
+          previewtxt:
+            "The mysterious deaths surrounding the discovery of King Tutankhamun's tomb.",
+          tags: ["history", "mystery"],
+          content:
+            "The so-called 'Curse of the Pharaohs' claims that those who disturbed Egyptian tombs faced untimely deaths, especially those involved in Tutankhamun's discovery.",
+        },
+        {
+          id: "0029",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Identity of Jack the Ripper",
+          previewtxt:
+            "The unsolved mystery of the notorious serial killer from Victorian London.",
+          tags: ["history", "mystery"],
+          content:
+            "Jack the Ripper remains one of history’s most infamous unsolved mysteries, with countless theories about the killer’s identity and motives.",
+        },
+        {
+          id: "0030",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Discovery of Penicillin",
+          previewtxt: "The accidental discovery that revolutionized medicine.",
+          tags: ["science", "history"],
+          content:
+            "In 1928, Alexander Fleming discovered penicillin, a breakthrough in antibiotics that has saved millions of lives worldwide.",
+        },
+        {
+          id: "0031",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Invention of the Printing Press",
+          previewtxt:
+            "How the printing press changed the course of history and science.",
+          tags: ["science", "history"],
+          content:
+            "Johannes Gutenberg’s invention of the printing press in the 15th century revolutionized communication, spreading knowledge and sparking the Renaissance.",
+        },
+        {
+          id: "0032",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Theory of Evolution by Natural Selection",
+          previewtxt:
+            "Charles Darwin’s groundbreaking theory that changed the understanding of life on Earth.",
+          tags: ["science", "history"],
+          content:
+            "Darwin’s theory of evolution, proposed in 1859, introduced natural selection as the mechanism behind the diversity of life on Earth.",
+        },
+        {
+          id: "0033",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Space Race: A Cold War Rivalry",
+          previewtxt:
+            "How the U.S. and the Soviet Union competed to explore space during the Cold War.",
+          tags: ["science", "history"],
+          content:
+            "The Space Race was a pivotal chapter in the Cold War, where scientific advancements were driven by geopolitical competition between the U.S. and the Soviet Union.",
+        },
+        {
+          id: "0034",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Lord of the Rings: A Dramatic Epic",
+          previewtxt:
+            "Explore the dramatic themes and characters of J.R.R. Tolkien's epic fantasy saga.",
+          tags: ["fantasy", "drama"],
+          content:
+            "Tolkien's 'The Lord of the Rings' combines fantasy elements with deep dramatic themes, such as heroism, sacrifice, and the struggle between good and evil.",
+        },
+        {
+          id: "0035",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "A Midsummer Night's Dream: Fantasy and Drama Combined",
+          previewtxt:
+            "Shakespeare’s enchanting play blends fantasy and drama with love, magic, and mischief.",
+          tags: ["fantasy", "drama"],
+          content:
+            "In 'A Midsummer Night’s Dream', Shakespeare merges elements of fantasy with dramatic conflict, creating a whimsical yet thought-provoking story.",
+        },
+        {
+          id: "0036",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Game of Thrones: Fantasy Meets Drama",
+          previewtxt:
+            "The epic fantasy series 'Game of Thrones' explores power, politics, and betrayal in a dramatic world of magic and mystery.",
+          tags: ["fantasy", "drama"],
+          content:
+            "'Game of Thrones' is known for its intricate political drama and fantasy elements, where mythical creatures and magical forces collide with human ambition.",
+        },
+        {
+          id: "0037",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Chronicles of Narnia: A Fantasy Drama for All Ages",
+          previewtxt:
+            "C.S. Lewis’s 'The Chronicles of Narnia' is a dramatic tale of good versus evil set in a fantastical world.",
+          tags: ["fantasy", "drama"],
+          content:
+            "'The Chronicles of Narnia' weaves together fantasy and drama, telling a timeless story about courage, betrayal, and redemption in a magical realm.",
+        },
+        {
+          id: "0038",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Sherlock Holmes: The Drama of Mystery",
+          previewtxt:
+            "Explore the timeless detective stories of Sherlock Holmes, blending mystery with dramatic suspense.",
+          tags: ["mystery", "drama"],
+          content:
+            "Sherlock Holmes, created by Arthur Conan Doyle, is a masterful blend of mystery and drama, with Holmes's sharp intellect and dramatic investigations into complex crimes.",
+        },
+        {
+          id: "0039",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Woman in Black: A Mysterious Drama",
+          previewtxt:
+            "The eerie mystery of 'The Woman in Black' unfolds in a gripping, dramatic tale of horror and suspense.",
+          tags: ["mystery", "drama"],
+          content:
+            "'The Woman in Black' is a ghostly mystery entwined with drama, as a young lawyer uncovers tragic secrets that threaten his life.",
+        },
+        {
+          id: "0040",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Hound of the Baskervilles: A Mysterious Thriller",
+          previewtxt:
+            "A classic Sherlock Holmes mystery filled with suspense and dramatic twists.",
+          tags: ["mystery", "drama"],
+          content:
+            "'The Hound of the Baskervilles' is a chilling mystery that combines eerie drama with Holmes's brilliant deductions to unravel a family curse.",
+        },
+        {
+          id: "0041",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Gone Girl: A Modern Mystery Drama",
+          previewtxt:
+            "Gillian Flynn’s psychological thriller 'Gone Girl' is a perfect mix of mystery, drama, and dark twists.",
+          tags: ["mystery", "drama"],
+          content:
+            "'Gone Girl' is a psychological mystery drama that dives deep into marriage, deception, and media manipulation, keeping audiences on the edge of their seats.",
+        },
+        {
+          id: "0042",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Secret of the Knights Templar",
+          previewtxt:
+            "Unveil the mystery of the Knights Templar and the fantasy elements that surround their legend.",
+          tags: ["history", "mystery", "fantasy"],
+          content:
+            "The Knights Templar are surrounded by mystery, with tales of hidden treasures and secret knowledge blending historical facts with fantasy-driven legends.",
+        },
+        {
+          id: "0043",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "King Arthur and the Holy Grail",
+          previewtxt:
+            "Explore the legendary tale of King Arthur’s quest for the Holy Grail, where history, mystery, and fantasy converge.",
+          tags: ["history", "mystery", "fantasy"],
+          content:
+            "The legend of King Arthur and the Holy Grail weaves historical myths with elements of fantasy, with the mysterious quest symbolizing the search for purity and divine favor.",
+        },
+        {
+          id: "0044",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Lost City of El Dorado",
+          previewtxt:
+            "The mystery of the lost city of gold, blending historical exploration with fantastical myths.",
+          tags: ["history", "mystery", "fantasy"],
+          content:
+            "The legend of El Dorado, the lost city of gold, combines historical accounts of explorers with fantasy-driven myths of unimaginable wealth hidden deep in South America.",
+        },
+        {
+          id: "0045",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Fountain of Youth: Myth or Reality?",
+          previewtxt:
+            "Delve into the historical pursuit of the Fountain of Youth and the mysterious, fantastical stories surrounding it.",
+          tags: ["history", "mystery", "fantasy"],
+          content:
+            "The search for the Fountain of Youth, driven by historical explorers like Ponce de León, is filled with mystery and fantasy, with tales of eternal life sparking both curiosity and skepticism.",
+        },
+        {
+          id: "0046",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Bermuda Triangle: Science or Superstition?",
+          previewtxt:
+            "Explore the mystery of the Bermuda Triangle through the lens of science and science fiction.",
+          tags: ["science", "scifi", "mystery"],
+          content:
+            "The Bermuda Triangle has sparked numerous theories, blending scientific explanations with mysterious and fantastical claims of unexplained disappearances.",
+        },
+        {
+          id: "0047",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Search for Extraterrestrial Life: Fact or Fantasy?",
+          previewtxt:
+            "The ongoing search for alien life combines cutting-edge science with the mystery and excitement of sci-fi.",
+          tags: ["science", "scifi", "mystery"],
+          content:
+            "Scientists are searching for extraterrestrial life, but the mystery of what might be out there is often explored in sci-fi narratives, blurring the line between fact and fiction.",
+        },
+        {
+          id: "0048",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Martian Mystery: Are We Alone?",
+          previewtxt:
+            "Is Mars hiding secrets that could solve the mystery of life beyond Earth? A mix of science, sci-fi, and intrigue.",
+          tags: ["science", "scifi", "mystery"],
+          content:
+            "Mars has long been a subject of fascination, with scientists uncovering mysterious clues that might suggest past life, while sci-fi imagines the possibilities of discovering intelligent beings.",
+        },
+        {
+          id: "0049",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Time Travel Paradoxes: Unraveling the Mystery",
+          previewtxt:
+            "The concept of time travel raises scientific questions and paradoxes that blend mystery and sci-fi.",
+          tags: ["science", "scifi", "mystery"],
+          content:
+            "Time travel, while a staple of science fiction, raises real scientific paradoxes like the grandfather paradox, creating a thrilling mix of mystery, science, and speculative fiction.",
+        },
+        {
+          id: "0050",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Prestige: A Tale of Magic and Mystery",
+          previewtxt:
+            "A dramatic exploration of rivalry, illusion, and the mystery behind magic.",
+          tags: ["drama", "mystery", "fantasy"],
+          content:
+            "'The Prestige' is a dramatic and mysterious story about two magicians whose rivalry leads to dark secrets and fantastical illusions, blurring the line between reality and fantasy.",
+        },
+        {
+          id: "0051",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "Pan's Labyrinth: A Dark Fantasy Drama",
+          previewtxt:
+            "The mystery of a young girl’s fantasy world in post-Civil War Spain.",
+          tags: ["drama", "mystery", "fantasy"],
+          content:
+            "'Pan’s Labyrinth' blends dark fantasy and drama, as a young girl in war-torn Spain discovers a mysterious labyrinth that may hold the key to escaping her grim reality.",
+        },
+        {
+          id: "0052",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Sixth Sense: A Mysterious Journey into the Unknown",
+          previewtxt:
+            "A psychological drama filled with mystery and a touch of supernatural fantasy.",
+          tags: ["drama", "mystery", "fantasy"],
+          content:
+            "'The Sixth Sense' is a haunting mystery wrapped in a psychological drama, where a child’s mysterious ability to see the dead unravels a fantastic and unexpected twist.",
+        },
+        {
+          id: "0053",
+          coverimg:
+            "https://images.unsplash.com/photo-1732465286852-a0b95393a90d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          title: "The Witcher: A Fantasy Drama of Secrets and Magic",
+          previewtxt:
+            "A tale of monster hunters, magic, and the deep mysteries of a fantastical world.",
+          tags: ["drama", "mystery", "fantasy"],
+          content:
+            "'The Witcher' blends dramatic storytelling with fantasy and mystery, as Geralt of Rivia navigates a world filled with magic, monstrous creatures, and the mysteries of his own destiny.",
+        },
+      ];
+      localStorage.setItem("articles", JSON.stringify(articles));
+    }
+
+    initRecommendedArticles();
+    populateArticles();
+
+    function updateUserPreference(topic) {
+      if (!sessionStorage.getItem("userpreference")) {
+        data = [topic];
+        sessionStorage.setItem("userpreference", JSON.stringify(data));
+      } else {
+        var userpreference_data = JSON.parse(
+          sessionStorage.getItem("userpreference")
+        );
+        if (userpreference_data.includes(topic)) {
+          const index = userpreference_data.indexOf(topic);
+          userpreference_data.splice(index, 1);
+          sessionStorage.setItem(
+            "userpreference",
+            JSON.stringify(userpreference_data)
+          );
+        } else {
+          userpreference_data.push(topic);
+          sessionStorage.setItem(
+            "userpreference",
+            JSON.stringify(userpreference_data)
+          );
+        }
+      }
+    }
+
+    function toggleSelection(idOfElement, topic) {
+      const card = document.getElementById(idOfElement);
+
+      if (card.classList.contains("selected")) {
+        card.classList.remove("selected");
+        updateUserPreference(topic);
+      } else {
+        card.classList.add("selected");
+        updateUserPreference(topic);
+      }
+    }
+
+    historyBtn.addEventListener("mouseup", () => historyMouseUp());
+    scienceBtn.addEventListener("mouseup", () => scienceMouseUp());
+    scifiBtn.addEventListener("mouseup", () => scifiMouseUp());
+    mysteryBtn.addEventListener("mouseup", () => mysteryMouseUp());
+    fantasyBtn.addEventListener("mouseup", () => fantasyMouseUp());
+    dramaBtn.addEventListener("mouseup", () => dramaMouseUp());
+    continueBtn.addEventListener("mouseup", () => createSuggestion());
+
+    function scienceMouseUp() {
+      toggleSelection("science", "science");
+      continueBtnMonitor();
+    }
+
+    function historyMouseUp() {
+      toggleSelection("history", "history");
+      continueBtnMonitor();
+    }
+
+    function scifiMouseUp() {
+      toggleSelection("scifi", "scifi");
+      continueBtnMonitor();
+    }
+
+    function mysteryMouseUp() {
+      toggleSelection("mystery", "mystery");
+      continueBtnMonitor();
+    }
+
+    function dramaMouseUp() {
+      toggleSelection("drama", "drama");
+      continueBtnMonitor();
+    }
+
+    function fantasyMouseUp() {
+      toggleSelection("fantasy", "fantasy");
+      continueBtnMonitor();
+    }
+
+    function markRecommended(articleID) {
+      if (!sessionStorage.getItem("recommendedArticles")) {
+        var payload = [articleID];
+        sessionStorage.setItem("recommendedArticles", JSON.stringify(payload));
+      } else {
+        var recommendedArticles = JSON.parse(
+          sessionStorage.getItem("recommendedArticles")
+        );
+        if (!recommendedArticles.includes(articleID)) {
+          recommendedArticles.push(articleID);
+          sessionStorage.setItem(
+            "recommendedArticles",
+            JSON.stringify(recommendedArticles)
+          );
+        }
+      }
+    }
+
+    function markPicked(articleID) {
+      if (!sessionStorage.getItem("pickedArticles")) {
+        var payload = [articleID];
+        sessionStorage.setItem("pickedArticles", JSON.stringify(payload));
+      } else {
+        var pickedArticles = JSON.parse(
+          sessionStorage.getItem("pickedArticles")
+        );
+        if (pickedArticles.length < 2) {
+          pickedArticles.push(articleID);
+          sessionStorage.setItem(
+            "pickedArticles",
+            JSON.stringify(pickedArticles)
+          );
+        } else {
+          pickedArticles = [];
+          pickedArticles.push(articleID);
+          sessionStorage.setItem(
+            "pickedArticles",
+            JSON.stringify(pickedArticles)
+          );
+        }
+      }
+    }
+
+    function selectArticle1(result) {
+      recommendedArticlesData = JSON.parse(
+        sessionStorage.getItem("recommendedArticles")
+      );
+
+      var x = 1;
+
+      for (let i = 1; i < result.length; i++) {
+        if (result[0]["score"] == result[i]["score"]) {
+          x = x + 1;
+        }
+      }
+
+      var count = [];
+
+      while (count.length < x) {
+        var randIndex = Math.floor(Math.random() * (x - 0) + 0);
+
+        if (!count.includes(randIndex)) {
+          count.push(randIndex);
+        }
+
+        if (!recommendedArticlesData.includes(result[randIndex]["id"])) {
+          markRecommended(result[randIndex]["id"]);
+          markPicked(result[randIndex]["id"]);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function selectArticle2(result) {
+      recommendedArticlesData = JSON.parse(
+        sessionStorage.getItem("recommendedArticles")
+      );
+
+      var x = 1;
+
+      for (let i = 2; i < result.length; i++) {
+        if (result[0]["score"] == result[i]["score"]) {
+          x = x + 1;
+        }
+      }
+
+      var count = [];
+
+      while (count.length < x) {
+        var randIndex = Math.floor(Math.random() * (x - 0) + 0);
+
+        if (!count.includes(randIndex)) {
+          count.push(randIndex);
+        }
+
+        if (!recommendedArticlesData.includes(result[randIndex]["id"])) {
+          markRecommended(result[randIndex]["id"]);
+          markPicked(result[randIndex]["id"]);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function createSuggestion() {
+      var resultArray = [];
+      var tagsData = [];
+      var articlesData = JSON.parse(localStorage.getItem("articles"));
+      var userPreference = JSON.parse(sessionStorage.getItem("userpreference"));
+
+      for (let i = 0; i < articlesData.length; i++) {
+        var payload = {
+          id: articlesData[i]["id"],
+          tags: articlesData[i]["tags"],
+        };
+        tagsData.push(payload);
+      }
+
+      const userPreferenceSet = new Set(userPreference);
+
+      for (let i = 0; i < tagsData.length; i++) {
+        const tagsDataSet = new Set(tagsData[i]["tags"]);
+
+        const intersectionSet = new Set(
+          [...userPreferenceSet].filter((x) => tagsDataSet.has(x))
+        );
+
+        const unionSet = new Set([...userPreferenceSet, ...tagsDataSet]);
+
+        const recScore = (intersectionSet.size / unionSet.size) * 100;
+
+        var payload = {
+          id: tagsData[i]["id"],
+          score: recScore,
+        };
+        resultArray.push(payload);
+      }
+      resultArray.sort((a, b) => b.score - a.score);
+      console.log("resultArray = ", resultArray);
+
+      if (selectArticle1(resultArray)) {
+        selectArticle2(resultArray);
+      }
+    }
+  </script>
+</html>
