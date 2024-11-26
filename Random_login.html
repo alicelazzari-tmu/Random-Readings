@@ -1,198 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Random_read_ogin</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Random_read_ogin</title>
 
-   <!--- thid  links here are for get the fonts that we go to use of google fonts and dont have to download or need that the user have it -->   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!--- thid  links here are for get the fonts that we go to use of google fonts and dont have to download or need that the user have it -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
 
- <!--- the next link is the one for get the fa fa icons that all like it use  -->   
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
- 
-  <style>
-    :root {
-    --background-color: #166966;
-    --popup-bg-color: rgba(22, 105, 102, 0.9);
-    --text-color: #005235;
-    --btn-bg-color: #005235;
-    --btn-color: #fff;
-    --btn-hover-bg-color: #58705C;
-    --card-background: white;
-    --font-family: "Poppins", sans-serif;
-    --font-titles: "Playfair Display", serif;
-    --primary-color: #005235;
-    --primary-hover: #58705C;
-  }
+    <!--- the next link is the one for get the fa fa icons that all like it use  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-  /* General */
-  body {
-    font-family: var(--font-family);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: var(--text-color);
-     background: url(imagesRR/pexels-pixabay-355713.jpg) rgba(22, 105, 102, 1); /* this is for have a image in bacj=kground and a color over but its dont wrk if you dot ise the  blend mode */
-    background-size: cover;
-    background-blend-mode:overlay; /*this works like photosop, the diferents obtions chanche how blend the layers */
-  }
+    <style>
+      :root {
+        --background-color: #166966;
+        --popup-bg-color: rgba(22, 105, 102, 0.9);
+        --text-color: #005235;
+        --btn-bg-color: #005235;
+        --btn-color: #fff;
+        --btn-hover-bg-color: #58705c;
+        --card-background: white;
+        --font-family: "Poppins", sans-serif;
+        --font-titles: "Playfair Display", serif;
+        --primary-color: #005235;
+        --primary-hover: #58705c;
+      }
 
-  .container {
-    width: 100%;
-    max-width: 400px;
-    background-color: var(--card-background);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
+      /* General */
+      body {
+        font-family: var(--font-family);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: var(--text-color);
+        background: url(imagesRR/pexels-pixabay-355713.jpg)
+          rgba(22, 105, 102, 1); /* this is for have a image in bacj=kground and a color over but its dont wrk if you dot ise the  blend mode */
+        background-size: cover;
+        background-blend-mode: overlay; /*this works like photosop, the diferents obtions chanche how blend the layers */
+      }
 
-  h4, h1 {
-    margin: 10px 0;
-    font-family: var(--font-titles);
-  }
+      .container {
+        width: 100%;
+        max-width: 400px;
+        background-color: var(--card-background);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
 
-  h4 {
-    color: black;
-    font-size: 1.2rem;
-    text-align:left;
-  }
+      h4,
+      h1 {
+        margin: 10px 0;
+        font-family: var(--font-titles);
+      }
 
-  h1 {
-    font-size: 3rem;
-    margin-top: 30px;
-  }
+      h4 {
+        color: black;
+        font-size: 1.2rem;
+        text-align: left;
+      }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
+      h1 {
+        font-size: 3rem;
+        margin-top: 30px;
+      }
 
-  input {
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 1rem;
-    border: 1px solid var(--primary-color);
-    border-radius: 5px;
-    outline: none;
-  }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
 
-  input:focus {
-    border-color: var(--primary-hover);
-  }
+      input {
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 1rem;
+        border: 1px solid var(--primary-color);
+        border-radius: 5px;
+        outline: none;
+      }
 
-  button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: var(--btn-bg-color);
-    color: var(--btn-color);
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+      input:focus {
+        border-color: var(--primary-hover);
+      }
 
-  button:hover {
-    background-color: var(--btn-hover-bg-color);
-  }
+      button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: var(--btn-bg-color);
+        color: var(--btn-color);
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-  .link {
-    margin-top: 10px;
-  }
+      button:hover {
+        background-color: var(--btn-hover-bg-color);
+      }
 
-  .options_go {
-    color: var(--primary-color);
-    text-decoration: none;
-    cursor: pointer;
-    justify-content: center;
-  }
+      .link {
+        margin-top: 10px;
+      }
 
-  .options_go:hover {
-    text-decoration: underline;
-  }
+      .options_go {
+        color: var(--primary-color);
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: center;
+      }
 
-  /* this kept hide the recover form */
-  #recover-password {
-    display: none;
-    justify-content: center;
-  }
+      .options_go:hover {
+        text-decoration: underline;
+      }
 
-  /* this give to all the buttons with the same width */
-  button, input {
-    width: 100%;
-    box-sizing: border-box; /* this is for no let affect the width */
-  }
- 
-  </style>
-</head>
-<body>
+      /* this kept hide the recover form */
+      #recover-password {
+        display: none;
+        justify-content: center;
+      }
 
-  <div class="container">
-     <h4 id="Readings_mark_small">Random Readings</h4>
-     <h1>Login</h1>
-    
-    <form id="login-form">
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-       <div class="link">
-          <a class="options_go" href="#" id="show-recover">Forgot your password?</a>
-      </div>
-    </form>
-   
-    <div id="recover-password">
-      <form id="recover-form">
-        <input type="email" id="recover-email" placeholder="Enter your email to recover your password" required>
-        <button type="submit">Password recovery</button>
-        <button id="close-recover"> I remember it, back to login!</button>
+      /* this give to all the buttons with the same width */
+      button,
+      input {
+        width: 100%;
+        box-sizing: border-box; /* this is for no let affect the width */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h4 id="Readings_mark_small">Random Readings</h4>
+      <h1>Login</h1>
+
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
       </form>
-      
-    </div>
-    <div class="link">
-      <p>Don't have an account? <a class="options_go" href="Random_read_Sign_up.html">Sign up here</a></p>
-    </div>
-  </div>
 
+      <div class="link">
+        <p>
+          Don't have an account?
+          <a class="options_go" href="Random_read_Sign_up.html">Sign up here</a>
+        </p>
+      </div>
+    </div>
+  </body>
   <script>
-     // Elements recovber 
-    const showRecover = document.getElementById("show-recover");
-    const closeRecover = document.getElementById("close-recover");
-    const recoverPassword = document.getElementById("recover-password");
-    const loginForm = document.getElementById("login-form");
-
-    // this show the recover form
-    showRecover.addEventListener("click", (event) => {
-      event.preventDefault();
-      recoverPassword.style.display = "flex";
-      showRecover.style.display = "none"; // hide the link
-      loginForm.style.display = "none"; //hide the form for login
-    });
-
-    // this hide the recover form and get back the login form
-    closeRecover.addEventListener("click", (event) => {
-      event.preventDefault();
-      recoverPassword.style.display = "none";
-      showRecover.style.display = "flex"; // this show the recuperation form
-      loginForm.style.display = "flex"; // this show the login forn again
-    });
+    // Elements recovber
+    var loginForm = document.getElementById("login-form");
 
     // Handle login form submission
-  loginForm.addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevent the actual form submission (simulated)
-    
-    // Redirect to "Home"
-    window.location.href = "home.html"; // here is the link to home if we need change we change here
-  </script>
+    loginForm.addEventListener("submit", function (event) {
+      var email = document.querySelector("#email");
+      var pswd = document.querySelector("#password");
 
-</body>
+      event.preventDefault();
+
+      if (!localStorage.getItem("users")) {
+        alert("Email or password is incorrect. Try again.");
+      } else {
+        var userData = JSON.parse(localStorage.getItem("users"));
+
+        var userFound = false;
+
+        for (let i = 0; i < userData.length; i++) {
+          if (userData[i]["email"] == email.value) {
+            if (userData[i]["password"] == pswd.value) {
+              userFound = true;
+              sessionStorage.setItem("activeUser", JSON.stringify(email.value));
+              window.location.href = "home.html";
+            }
+          }
+        }
+
+        if (userFound == false) {
+          alert("Email or password is incorrect. Try again.");
+        }
+      }
+    });
+  </script>
 </html>
