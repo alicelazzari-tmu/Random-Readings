@@ -50,181 +50,57 @@
         margin: 40px 0;
       }
 
-      .article-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-
-      .article-grid {
+      #cover {
         display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
         justify-content: center;
         align-items: center;
-      }
-
-      .article-card {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        padding: 10px;
-        border-radius: 15px;
-        border-width: 2px;
-        border-style: solid;
-        border-color: rgb(214, 214, 214);
-        overflow: hidden;
-        width: 300px;
-        height: fit-content;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-
-      #article-title {
-        font-size: 24px;
-        font-weight: bold;
-        text-wrap: wrap;
-        color: green;
         width: 100%;
       }
 
-      #content-preview {
-        font-size: 16px;
-        font-weight: lighter;
-        color: rgb(102, 102, 102);
-        text-wrap: wrap;
-      }
-
-      #cover-image {
+      #image {
+        width: 700px;
         height: 200px;
-        width: 450px;
-        border-radius: 10px;
-        width: 100%;
+        border-radius: 16px;
+        object-fit: cover;
       }
 
-      .article-card:hover {
-        transform: scale(1.02);
-      }
-
-      #back-button {
+      #article-content {
         display: flex;
-        width: fit-content;
         align-items: center;
-        gap: 10px;
-        padding: 10px 15px;
-        border-radius: 10px;
-        background-color: white;
-        color: black;
-        border-color: rgb(0, 153, 0);
-        border-width: 2px;
-        border-style: solid;
-      }
-
-      #back-button:hover {
-        cursor: pointer;
-      }
-
-      #suggest-button:hover {
-        cursor: pointer;
-      }
-
-      #suggest-button {
-        display: flex;
-        width: fit-content;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 15px;
-        border-radius: 10px;
-        background-color: rgb(0, 153, 0);
-        color: white;
-        border-color: rgb(0, 153, 0);
-        border-width: 2px;
-        border-style: solid;
-      }
-
-      .button-panel {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 30px;
         width: 100%;
-      }
-
-      /* Responsive adjustments */
-      @media (max-width: 1400px) {
-        .article-container {
-          max-width: 800px;
-        }
-      }
-
-      @media (max-width: 1000px) {
-        .article-container {
-          max-width: 540px;
-        }
-        .article-card {
-          width: 100%;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .article-container {
-          max-width: 520px;
-        }
-        .article-card {
-          width: 100%;
-        }
+        padding-left: 350px;
+        padding-right: 350px;
+        padding-top: 30px;
+        padding-bottom: 50px;
       }
     </style>
   </head>
   <body>
-    <header class="header">
-      <h1>Random Readings</h1>
-      <div class="profile">
-        <img src="/api/placeholder/40/40" alt="Profile" />
-        <span>Michael Scott</span>
-      </div>
-    </header>
-
-    <h2 class="main-title">Select an Article</h2>
-
-    <div class="article-container">
-      <div class="button-panel">
-        <a href="home.html">
-          <div id="back-button">
-            <img id="btn-icon" src="imagesRR/arrow-left.svg" />
-            <p id="btn-label">Back to Interests</p>
-          </div>
-        </a>
-        <div id="suggest-button">
-          <img id="btn-icon" src="imagesRR/refresh-ccw.svg" />
-          <p id="btn-label">Suggest Again</p>
-        </div>
-      </div>
-      <div class="article-grid">
-        <div class="article-card" id="a1">
-          <img
-            id="cover-image"
-            src="https://images.unsplash.com/photo-1704394347149-f75a4ca6200c?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Article 1"
-          />
-          <p id="article-title">Title of the Article</p>
-          <p id="content-preview">
-            Loreknsdjvnsjdnvjsndn adlknlkdnv ddlknvkdnv ad vald vla dvj adjv jod
-            jad o dv od dvdvsdv dvod vod vodvdv dvoadvdvdv advdv dv dvadvadv
-          </p>
-        </div>
-        <div class="article-card" id="a2">
-          <img
-            id="cover-image"
-            src="https://images.unsplash.com/photo-1704394347149-f75a4ca6200c?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Article 1"
-          />
-          <p id="article-title">Title of the Article</p>
-          <p id="content-preview">
-            Loreknsdjvnsjdnvjsndn adlknlkdnv ddlknvkdnv ad vald vla dvj adjv jod
-            jad o dv od dvdvsdv dvod vod vodvdv dvoadvdvdv advdv dv dvadvadv
-          </p>
-        </div>
-      </div>
+    <h2 class="main-title">Article Title</h2>
+    <div id="cover">
+      <img
+        id="image"
+        src="https://worldwildschooling.com/wp-content/uploads/2024/01/Matterhorn_Mumemories_Adobe-Stock-Photo_682931585.jpg"
+      />
+    </div>
+    <div id="article-content">
+      <p>Content of the article goes here.</p>
     </div>
   </body>
+
+  <script>
+    var title = document.querySelector(".main-title");
+    var image = document.querySelector("#image");
+    var content = document.querySelector("#article-content");
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+    articlesData = JSON.parse(localStorage.getItem("articles"));
+    for (let i = 0; i < articlesData.length; i++) {
+      if (articlesData[i]["id"] == id) {
+        title.innerText = articlesData[i]["title"];
+        image.src = articlesData[i]["coverimg"];
+        content.innerText = articlesData[i]["content"];
+      }
+    }
+  </script>
 </html>
