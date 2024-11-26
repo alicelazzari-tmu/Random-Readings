@@ -1,300 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <!-- this part is like reset for "clean the frame" avoid the preset of the navegator-->
-   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
- 
-  <!--- thid  links here are for get the fonts that we go to use of google fonts and dont have to download or need that the user have it -->   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- this part is like reset for "clean the frame" avoid the preset of the navegator-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
- <!--- the next link is the one for get the fa fa icons that all like it use  -->   
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <!--- thid  links here are for get the fonts that we go to use of google fonts and dont have to download or need that the user have it -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
 
- <!--- the next link is the one for get the fa fa icons that all like it use  -->    
-  <title>Join to Random Readings</title>
+    <!--- the next link is the one for get the fa fa icons that all like it use  -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
 
-  <style>
-    :root {
-      --primary-color: #005235;
-      --primary-hover: #58705C;
-      --background-color: #166966;
-      --card-background: white;
-      --text-color: #005235;
-      --secondary-text-color: #555;
-      --border-color: #ccc;
-      --font-family: "Poppins", sans-serif;
-      --font-titles:"plafair", serif;
-    }
-    
-    body {
-      display: flex;
-      font-family: var(--font-family);
-      margin: 0;
-      padding: 0;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: url(imagesRR/pexels-photo-4050351.jpeg) rgba(22, 105, 102, 1); /* this is for have a image in bacj=kground and a color over but its dont wrk if you dot ise the  blend mode */
-      background-size: cover;
-      background-blend-mode:overlay; /*this works like photosop, the diferents obtions chanche how blend the layers */
-    }
+    <!--- the next link is the one for get the fa fa icons that all like it use  -->
+    <title>Join to Random Readings</title>
 
-
-
-    .container {
-      background: var(--card-background);
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      width: 100%;
-      max-width: 400px;
-      display: flex;
-      flex-direction: column;
-    }
-/* styles for the form */
-
-    #signupForm{
-      display: flex;
-     flex-wrap: wrap;
-      padding: 15px;
-    }
-
-    #Readings_mark_small{
-      font-family: var( --font-titles);
-      margin-left: 20px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 10px;
-      margin-top: ;
-      color: var(--text-color);
-      font-size: 3em;
-      font-family: var(--font-titles);
-    }
-
-    .content_label{
-      width: 100%;
-    }
-
-    label {
-      font-size: 14px;
-      margin-bottom: 5px;
-      color: var(--secondary-text-color);
-    }
-
-    input, select {
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      font-size: 14px;
-      width: 100%;
-    }
-
-    .info {
-      font-size: 12px;
-      color: var(--secondary-text-color);
-      margin-bottom: 15px;
-    }
-
-    button {
-      padding: 10px;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      
-      width: 100%;
-    }
-
-    button:hover {
-      background-color: var(--primary-hover);
-    }
-
-    #back_login{
-      display: flex;
-      align-content:center;
-      justify-content: center;
-    }
-
-
- /* Popup */
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .popup-content {
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      width: 300px;
-    }
-
-    .popup-content h3 {
-      margin-bottom: 20px;
-    }
-
-    #enter-now-btn {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-     #enter-now-btn:hover {
-       background-color: var(--primary-hover);
-     }
-
-    /* Cerrar el popup */
-    .close-popup {
-      background-color: var(--btn-hover-bg-color);
-    }
-
-    /* this os the help style*/
-     .info-icon {
-      display: flex;
-      margin-left: 5px;
-      cursor: pointer;
-      position: relative;
-      color:var(--text-color);
-    }
-
-    .info-icon::after {
-      content: attr(data-info);/*this is for show the content that is in the data label of html*/
-      display: none;
-      position: absolute;
-      top: 120%;
-      left: 50%;
-      transform: translateX(-50%);/* the text is gone out  displaced so with this come to  the point correct*/
-      background-color: #333;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      width: 100%;
-      white-space:wrap;
-    }
-
-   .info-icon:hover::after {
-      display: block;
- 
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h4 id="Readings_mark_small">Random Readings</h4>
-    <h2>Sign Up</h2>
-
-    <p id="back_login">You have an account? <a href="Random_login.html"> Login here</a></p>
-
-    <form id="signupForm">
-
-<!--- Pen Name ----->
-      <div class="content_label">
-       
-       <span class="info-icon" data-info="This is the name you’ll use to log in and your sign in yor texts.">
-          <i class="fas fa-info-circle"></i></span>
-        <label for="PenName"> Pen Name</label>
-      </div>
-
-      <input type="text" id="PenName" placeholder="make it unique" required>
-
-<!---Legal Name ----->    
-
-   <div class="content_label">
-    <span class="info-icon" data-info="for bored legal reasons  we need your all day name. this don't go to be shared in the page.">
-          <i class="fas fa-info-circle"></i></span>
-      <label for="lastName">Legal Name</label>
-   </div>
-
-      <input type="text" id="lastName" placeholder="conplete legal name" required>
-
-<!--- Email ----->      
- 
-  <div class="content_label">
-    <span class="info-icon" data-info="this will be our principal way to contact you">
-          <i class="fas fa-info-circle"></i></span>     
-      <label for="email">Email</label>
-  </div>
-      
-      <input type="email" id="email" placeholder="Enter your email" required>
-  
-<!--- pasword ----->   
-
-   <div class="content_label">
-    <span class="info-icon" data-info="Password must be at least 8 characters, include one uppercase letter, one number, and one special character (!@#$%)">
-          <i class="fas fa-info-circle"></i></span>         
-      <label for="password">Password</label>
-   </div>      
-      <input type="password" id="password" placeholder="a secure pasword save your ideas" required>
- 
- <!--- confir pasword ----->         
-      <label for="confirmPassword">Confirm Password</label>
-      <input type="password" id="confirmPassword" placeholder="Re-enter your password" required>
-
- <!--- button to send the form ----->      
-      <button type="submit">Submit</button>
-    </form>
-
-  </div>
-  
-    <!-- Wellcome to random read popup -->
-  <div id="welcome-popup" class="popup">
-    <div class="popup-content">
-      <h3>Welcome to Random Reading </h3>
-      <p>the fun way to find some new to read!.</p>
-      <button id="enter-now-btn" class="close-popup"> IN TO READING NOW!</button>
-    </div>
-
-
-  <script>
-    const form = document.getElementById('signupForm');
-    const welcomePopup = document.getElementById("welcome-popup");
-    const enterNowBtn = document.getElementById("enter-now-btn");
-
-    form.addEventListener('submit', function(event) { 
-      event.preventDefault();// event foult is for avoit the recharge of the page 
-
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-
-      if (password !== confirmPassword) {
-        alert('Passwords do not match. Please try again.');
-        return;
+    <style>
+      :root {
+        --primary-color: #005235;
+        --primary-hover: #58705c;
+        --background-color: #166966;
+        --card-background: white;
+        --text-color: #005235;
+        --secondary-text-color: #555;
+        --border-color: #ccc;
+        --font-family: "Poppins", sans-serif;
+        --font-titles: "plafair", serif;
       }
 
-      
-    });
- // This code is for made that the pop up visible
-    form.addEventListener("submit", function(event) {
-      event.preventDefault(); // THIS AVOID THAT THE FORM BE SENDED
-      welcomePopup.style.display = "flex"; // THIS CHANGE THE POPUP DISPLEY FRON NONE TO FLEX FOR THAT BE SHOW
-    });
+      body {
+        display: flex;
+        font-family: var(--font-family);
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url(imagesRR/pexels-photo-4050351.jpeg)
+          rgba(22, 105, 102, 1); /* this is for have a image in bacj=kground and a color over but its dont wrk if you dot ise the  blend mode */
+        background-size: cover;
+        background-blend-mode: overlay; /*this works like photosop, the diferents obtions chanche how blend the layers */
+      }
 
-  // this close the popup when the user made clip in go now and  send to home 
-    enterNowBtn.addEventListener("click", function() {
-      welcomePopup.style.display = "none"; // THIS close the popup
-      window.location.href = "home.html"; // this send to  principal page 
-    });
+      .container {
+        background: var(--card-background);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+      }
+      /* styles for the form */
 
-    
+      #signupForm {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 15px;
+      }
+
+      #Readings_mark_small {
+        font-family: var(--font-titles);
+        margin-left: 20px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        color: var(--text-color);
+        font-size: 3em;
+        font-family: var(--font-titles);
+      }
+
+      .content_label {
+        width: 100%;
+      }
+
+      label {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: var(--secondary-text-color);
+      }
+
+      input,
+      select {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 14px;
+        width: 100%;
+      }
+
+      .info {
+        font-size: 12px;
+        color: var(--secondary-text-color);
+        margin-bottom: 15px;
+      }
+
+      button {
+        padding: 10px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+
+        width: 100%;
+      }
+
+      button:hover {
+        background-color: var(--primary-hover);
+      }
+
+      #back_login {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+      }
+
+      /* Popup */
+      .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .popup-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+      }
+
+      .popup-content h3 {
+        margin-bottom: 20px;
+      }
+
+      #enter-now-btn {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #enter-now-btn:hover {
+        background-color: var(--primary-hover);
+      }
+
+      /* Cerrar el popup */
+      .close-popup {
+        background-color: var(--btn-hover-bg-color);
+      }
+
+      /* this os the help style*/
+      .info-icon {
+        display: flex;
+        margin-left: 5px;
+        cursor: pointer;
+        position: relative;
+        color: var(--text-color);
+      }
+
+      .info-icon::after {
+        content: attr(
+          data-info
+        ); /*this is for show the content that is in the data label of html*/
+        display: none;
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        transform: translateX(
+          -50%
+        ); /* the text is gone out  displaced so with this come to  the point correct*/
+        background-color: #333;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        width: 100%;
+        white-space: wrap;
+      }
+
+      .info-icon:hover::after {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h4 id="Readings_mark_small">Random Readings</h4>
+      <h2>Sign Up</h2>
+
+      <p id="back_login">
+        You have an account? <a href="Random_login.html"> Login here</a>
+      </p>
+
+      <form id="signupForm">
+        <!---User Name ----->
+
+        <div class="content_label">
+          <span
+            class="info-icon"
+            data-info="This you username for your account."
+          >
+            <i class="fas fa-info-circle"></i
+          ></span>
+          <label for="userName">Username</label>
+        </div>
+
+        <input
+          type="text"
+          id="userName"
+          placeholder="Enter your username"
+          required
+        />
+
+        <!--- Email ----->
+
+        <div class="content_label">
+          <span
+            class="info-icon"
+            data-info="This is your email address for your account."
+          >
+            <i class="fas fa-info-circle"></i
+          ></span>
+          <label for="email">Email</label>
+        </div>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+
+        <!--- pasword ----->
+
+        <div class="content_label">
+          <span
+            class="info-icon"
+            data-info="Password must be at least 8 characters, include one uppercase letter, one number, and one special character (!@#$%)"
+          >
+            <i class="fas fa-info-circle"></i
+          ></span>
+          <label for="password">Password</label>
+        </div>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          required
+        />
+
+        <!--- confir pasword ----->
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Re-enter your password"
+          required
+        />
+
+        <!--- button to send the form ----->
+        <button type="submit">Create Account</button>
+      </form>
+    </div>
+  </body>
+
+  <script>
+    const form = document.getElementById("signupForm");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // event foult is for avoit the recharge of the page
+
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match. Please try again.");
+        return;
+      } else {
+        var username = document.querySelector("#userName").value;
+        var email = document.querySelector("#email").value;
+        var pswd = document.querySelector("#password").value;
+
+        if (!localStorage.getItem("users")) {
+          payload = [
+            {
+              username: username,
+              email: email,
+              password: pswd,
+            },
+          ];
+
+          localStorage.setItem("users", JSON.stringify(payload));
+          alert("Your account has been created. You can log in now.");
+          window.location.href = "Random_login.html";
+        } else {
+          userData = JSON.parse(localStorage.getItem("users"));
+          payload = {
+            username: username,
+            email: email,
+            password: pswd,
+          };
+
+          userData.push(payload);
+
+          localStorage.setItem("users", JSON.stringify(userData));
+          alert("Your account has been created. You can log in now.");
+          window.location.href = "Random_login.html";
+        }
+      }
+    });
   </script>
-</body>
 </html>
