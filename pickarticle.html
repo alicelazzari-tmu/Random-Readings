@@ -235,6 +235,18 @@
     var article2Card = document.getElementById("a2");
 
     suggestBtn.addEventListener("mouseup", () => suggestBtnMouseUp());
+    article1Card.addEventListener("mouseup", () => article1CardMouseUp());
+    article2Card.addEventListener("mouseup", () => article2CardMouseUp());
+
+    function article1CardMouseUp() {
+      var id = JSON.parse(sessionStorage.getItem("pickedArticles"));
+      window.location.href = "read.html?id=" + id[0];
+    }
+
+    function article2CardMouseUp() {
+      var id = JSON.parse(sessionStorage.getItem("pickedArticles"));
+      window.location.href = "read.html?id=" + id[1];
+    }
 
     function suggestBtnMouseUp() {
       createSuggestion();
