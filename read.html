@@ -64,14 +64,20 @@
         object-fit: cover;
       }
 
+      #container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 20px;
+      }
+
       #article-content {
         display: flex;
         align-items: center;
         width: 100%;
-        padding-left: 350px;
-        padding-right: 350px;
-        padding-top: 30px;
-        padding-bottom: 50px;
+        max-width: 700px;
       }
     </style>
   </head>
@@ -83,8 +89,10 @@
         src="https://worldwildschooling.com/wp-content/uploads/2024/01/Matterhorn_Mumemories_Adobe-Stock-Photo_682931585.jpg"
       />
     </div>
-    <div id="article-content">
-      <p>Content of the article goes here.</p>
+    <div id="container">
+      <div id="article-content">
+        <p>Content of the article goes here.</p>
+      </div>
     </div>
   </body>
 
