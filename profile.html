@@ -1,405 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
     <title>Profile Page</title>
     <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+      }
 
-        h1 {
-            font-family:'Playfair Display', 'Arial Narrow', Arial, sans-serif;
-        }
+      h1 {
+        font-family: "Playfair Display", "Arial Narrow", Arial, sans-serif;
+      }
 
-        h2 {
-            font-family:'Playfair Display', 'Arial Narrow', Arial, sans-serif;
-        }
+      h2 {
+        font-family: "Playfair Display", "Arial Narrow", Arial, sans-serif;
+      }
 
-        h3 {
-            font-family:'Playfair Display', 'Arial Narrow', Arial, sans-serif;
-        }
+      h3 {
+        font-family: "Playfair Display", "Arial Narrow", Arial, sans-serif;
+      }
 
-        /* Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #fff;
-            padding: 15px 20px;
-            border-bottom: 1px solid #ddd;
-        }
+      /* Header */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        padding: 15px 20px;
+        border-bottom: 1px solid #ddd;
+      }
 
-        .header .logo {
-            font-size: 1.5rem;
-            color: #005235;
-            font-family:'Playfair Display', 'Arial Narrow', Arial, sans-serif;
-            font-weight: bold;
-        }
+      .header .logo {
+        font-size: 1.5rem;
+        color: #005235;
+        font-family: "Playfair Display", "Arial Narrow", Arial, sans-serif;
+        font-weight: bold;
+      }
 
-        .header .user-menu {
-            display: flex;
-            align-items: center;
-        }
+      .header .user-menu {
+        display: flex;
+        align-items: center;
+      }
 
-        .header .user-menu img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+      .header .user-menu img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
 
-        .header .user-menu .icon {
-            margin-left: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-            color: #005235;
-        }
+      .header .user-menu .icon {
+        margin-left: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+        color: #005235;
+      }
 
-        .header .user-menu .icon:hover {
-            color: #002e1e;
-        }
+      .header .user-menu .icon:hover {
+        color: #002e1e;
+      }
 
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+      }
 
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-        }
+      .box {
+        background: white;
+        padding: 20px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
 
-        .box {
-            background: white;
-            padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+      .box-title {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        color: #005235;
+      }
 
-        .box-title {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            color: #005235;
-        }
+      /* Personal Information */
+      .personal-info {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
 
-        /* Personal Information */
-        .personal-info {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
+      .personal-info img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+      }
 
-        .personal-info img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-        }
+      .personal-info .info p {
+        margin: 5px 0;
+      }
 
-        .personal-info .info p {
-            margin: 5px 0;
-        }
+      .edit-btn,
+      .save-btn {
+        margin-top: 10px;
+        background: #005235;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
 
+      .edit-btn:hover,
+      .save-btn:hover {
+        background: #002e1e;
+      }
 
-        .edit-btn, .save-btn {
-            margin-top: 10px;
-            background: #005235;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+      /* My Friends */
+      .friends {
+        background: #fff;
+        padding: 20px;
+        border-radius: 16px;
+      }
 
-        .edit-btn:hover, .save-btn:hover {
-            background: #002e1e;
-        }
+      .friend-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
 
-        /* My Friends */
-        .friends {
-            background: #fff;
-            padding: 20px;
-            border-radius: 16px;
-        }
+      .friend {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        padding: 10px;
+        border-radius: 10px;
+      }
 
-        .friend-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
+      .friend img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 
-        .friend {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: white;
-            padding: 10px;
-            border-radius: 10px;
-        }
+      .friend-actions button {
+        background: none;
+        border: none;
+        color: #005235;
+        cursor: pointer;
+        transition: 0.3s;
+      }
 
-        .friend img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
+      .friend-actions button:hover {
+        text-decoration: underline;
+      }
 
-        .friend-actions button {
-            background: none;
-            border: none;
-            color: #005235;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+      /* Favorite Articles */
 
-        .friend-actions button:hover {
-            text-decoration: underline;
-        }
+      .article-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
 
-        /* Favorite Articles */
+      .article-card {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        padding: 15px;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        align-items: center;
+      }
 
-        .article-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
+      .article-card img {
+        border-radius: 8px;
+        width: 100%;
+        margin-bottom: 10px;
+      }
 
-        .article-card {
-            display: flex;
-            flex-direction: column;
-            background: white;
-            padding: 15px;
-            border-radius: 16px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            align-items: center;
-        }
+      .article-card h3 {
+        font-size: 1rem;
+      }
 
-        .article-card img {
-            border-radius: 8px;
-            width: 100%;
-            margin-bottom: 10px;
-        }
+      .article-card p {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 10px;
+      }
 
-        .article-card h3 {
-            font-size: 1rem;
-        }
+      .article-card .actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .article-card p {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 10px;
-        }
+      .article-card .actions .read-btn {
+        background: #fff;
+        color: #005235;
+        border: 1px solid #005235;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-        .article-card .actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      .article-card .actions .read-btn:hover {
+        background: #f3f3f3;
+      }
 
-        .article-card .actions .read-btn {
-            background: #fff;
-            color: #005235;
-            border: 1px solid #005235;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+      .article-card .actions .star {
+        cursor: pointer;
+        font-size: 20px;
+        color: #ffd700;
+      }
 
-        .article-card .actions .read-btn:hover {
-            background: #f3f3f3;
-        }
-
-        .article-card .actions .star {
-            cursor: pointer;
-            font-size: 20px;
-            color: #FFD700;
-        }
-
-       /* Media Queries for Responsiveness */
-    @media (max-width: 768px) {
+      /* Media Queries for Responsiveness */
+      @media (max-width: 768px) {
         /* Adjust for small screens, like mobile devices */
         .friend-list {
-            grid-template-columns: 1fr; /* Single column */
+          grid-template-columns: 1fr; /* Single column */
         }
 
         .friend {
-            flex-direction: column; /* Stack the friend info vertically */
-            align-items: flex-start;
+          flex-direction: column; /* Stack the friend info vertically */
+          align-items: flex-start;
         }
 
         .friend img {
-            width: 50px;
-            height: 50px;
+          width: 50px;
+          height: 50px;
         }
 
         .friend-actions button {
-            font-size: 14px;
+          font-size: 14px;
         }
 
         .article-list {
-            grid-template-columns: 1fr; /* Single column */
+          grid-template-columns: 1fr; /* Single column */
         }
-    }
+      }
 
-    @media (max-width: 480px) {
+      @media (max-width: 480px) {
         /* Further adjust for smaller screens */
         .friend img {
-            width: 40px;
-            height: 40px;
+          width: 40px;
+          height: 40px;
         }
 
         .friend-actions button {
-            font-size: 12px;
+          font-size: 12px;
         }
-    }
+      }
     </style>
-</head>
-<body>
-<header>
-    <div class="header">
+  </head>
+  <body>
+    <header>
+      <div class="header">
         <div class="logo">Random Readings</div>
         <div class="user-menu">
-            <img src="imgs/img-header-profile.png" alt="User Image">
-            <h3>Michael Scott</h3>
-            <div class="icon" onclick="window.location.href='/logout'"><img src="imgs/icon-logout.png" alt="Logout"></div> <!-- Logout Icon -->
+          <a href="profile.html">
+            <img
+              id="user-icon"
+              src="imgs/img-header-profile.png"
+              alt="User Image"
+            />
+          </a>
+          <h3 id="user-name">Michael Scott</h3>
+          <div class="icon" id="logout-btn">
+            <img src="imgs/icon-logout.png" alt="Logout" />
+          </div>
+          <!-- Logout Icon -->
         </div>
-    </div>
-</header>
+      </div>
+    </header>
 
-<div class="container">
-    <!-- Personal Information -->
-    <div class="box">
+    <div class="container">
+      <!-- Personal Information -->
+      <div class="box">
         <div class="box-title">
-            <h2>Personal Information</h2>
-            <button class="edit-btn" id="edit-btn">Edit</button>
-            <button class="save-btn" id="save-btn" style="display:none;">Save</button>
+          <h2>Personal Information</h2>
+          <button class="edit-btn" id="edit-btn">Edit</button>
+          <button class="save-btn" id="save-btn" style="display: none">
+            Save
+          </button>
         </div>
         <div class="personal-info">
-            <img src="imgs/img-profile.png" alt="User Profile Image">
-            <div class="info">
-                <p><strong>Pen Name:</strong> <span id="pen-name-text">Creative Writer</span></p>
-                <input type="text" id="pen-name-input" value="CreativeUser" style="display:none;">
-                <p><strong>Legal Name:</strong> <span id="legal-name-text">Michael Scott</span></p>
-                <input type="text" id="legal-name-input" value="John Doe" style="display:none;">
-                <p><strong>Email:</strong> <span id="email-text">michaelscott@email.com</span></p>
-                <input type="email" id="email-input" value="johndoe@example.com" style="display:none;">
-            </div>
+          <img src="imgs/img-profile.png" alt="User Profile Image" />
+          <div class="info">
+            <p>
+              <strong>Pen Name:</strong>
+              <span id="pen-name-text">Creative Writer</span>
+            </p>
+            <input
+              type="text"
+              id="pen-name-input"
+              value="CreativeUser"
+              style="display: none"
+            />
+            <p>
+              <strong>Legal Name:</strong>
+              <span id="legal-name-text">Michael Scott</span>
+            </p>
+            <input
+              type="text"
+              id="legal-name-input"
+              value="John Doe"
+              style="display: none"
+            />
+            <p>
+              <strong>Email:</strong>
+              <span id="email-text">michaelscott@email.com</span>
+            </p>
+            <input
+              type="email"
+              id="email-input"
+              value="johndoe@example.com"
+              style="display: none"
+            />
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- My Friends -->
-    <div class="box friends">
+      <!-- My Friends -->
+      <div class="box friends">
         <h2 class="box-title">My Friends</h2>
         <div class="friend-list">
-            <div class="friend">
-                <img src="imgs/img-friend-1.png" alt="Friend Image">
-                <div>
-                    <p><strong>Jane Doe</strong></p>
-                    <p>Writer</p>
-                </div>
-                <div class="friend-actions">
-                    <button>Chat</button>
-                    <button>Articles</button>
-                    <button>Unfollow</button>
-                </div>
+          <div class="friend">
+            <img src="imgs/img-friend-1.png" alt="Friend Image" />
+            <div>
+              <p><strong>Jane Doe</strong></p>
+              <p>Writer</p>
             </div>
-            <!-- Repeat the friend block for other friends -->
-            <div class="friend">
-                <img src="imgs/img-friend-2.png" alt="Friend Image">
-                <div>
-                    <p><strong>Samantha Smith</strong></p>
-                    <p>Writer</p>
-                </div>
-                <div class="friend-actions">
-                    <button>Chat</button>
-                    <button>Articles</button>
-                    <button>Unfollow</button>
-                </div>
+            <div class="friend-actions">
+              <button>Chat</button>
+              <button>Articles</button>
+              <button>Unfollow</button>
             </div>
+          </div>
+          <!-- Repeat the friend block for other friends -->
+          <div class="friend">
+            <img src="imgs/img-friend-2.png" alt="Friend Image" />
+            <div>
+              <p><strong>Samantha Smith</strong></p>
+              <p>Writer</p>
+            </div>
+            <div class="friend-actions">
+              <button>Chat</button>
+              <button>Articles</button>
+              <button>Unfollow</button>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Favorite Articles -->
-    <div class="box">
+      <!-- Favorite Articles -->
+      <div class="box">
         <h2 class="box-title">Favorite Articles</h2>
         <div class="article-list">
-            <div class="article-card">
-                <img src="imgs/img-article-1.png" alt="Article Image">
-                <h3><span class="star">★</span> Amazing Article</h3>
-                <p><strong>Author:</strong> Jane Doe</p>
-                <p>Short article description...</p>
-                <div class="actions">
-                    <button class="read-btn">Read More</button>
-                </div>
+          <div class="article-card">
+            <img src="imgs/img-article-1.png" alt="Article Image" />
+            <h3><span class="star">★</span> Amazing Article</h3>
+            <p><strong>Author:</strong> Jane Doe</p>
+            <p>Short article description...</p>
+            <div class="actions">
+              <button class="read-btn">Read More</button>
             </div>
-            <!-- Repeat the article card for other articles -->
-            <div class="article-card">
-                <img src="imgs/img-article-2.png" alt="Article Image">
-                <h3><span class="star">★</span> Really Good Article</h3>
-                <p><strong>Author:</strong> Samantha Smith</p>
-                <p>Short article description...</p>
-                <div class="actions">
-                    <button class="read-btn">Read More</button>
-                </div>
+          </div>
+          <!-- Repeat the article card for other articles -->
+          <div class="article-card">
+            <img src="imgs/img-article-2.png" alt="Article Image" />
+            <h3><span class="star">★</span> Really Good Article</h3>
+            <p><strong>Author:</strong> Samantha Smith</p>
+            <p>Short article description...</p>
+            <div class="actions">
+              <button class="read-btn">Read More</button>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-<script>
-    const editButton = document.getElementById('edit-btn');
-    const saveButton = document.getElementById('save-btn');
-    const penNameText = document.getElementById('pen-name-text');
-    const legalNameText = document.getElementById('legal-name-text');
-    const emailText = document.getElementById('email-text');
-    const penNameInput = document.getElementById('pen-name-input');
-    const legalNameInput = document.getElementById('legal-name-input');
-    const emailInput = document.getElementById('email-input');
+    <script>
+      const editButton = document.getElementById("edit-btn");
+      const saveButton = document.getElementById("save-btn");
+      const penNameText = document.getElementById("pen-name-text");
+      const legalNameText = document.getElementById("legal-name-text");
+      const emailText = document.getElementById("email-text");
+      const penNameInput = document.getElementById("pen-name-input");
+      const legalNameInput = document.getElementById("legal-name-input");
+      const emailInput = document.getElementById("email-input");
+      var logoutBTN = document.getElementById("logout-btn");
+      var username = document.getElementById("user-name");
 
-    editButton.addEventListener('click', () => {
-        penNameText.style.display = 'none';
-        legalNameText.style.display = 'none';
-        emailText.style.display = 'none';
+      function displayUserName() {
+        useremail = JSON.parse(sessionStorage.getItem("activeUser"));
+        allUserData = JSON.parse(localStorage.getItem("users"));
 
-        penNameInput.style.display = 'block';
-        legalNameInput.style.display = 'block';
-        emailInput.style.display = 'block';
+        for (let i = 0; i < allUserData.length; i++) {
+          if (allUserData[i]["email"] == useremail) {
+            username.innerText = allUserData[i]["username"];
+          }
+        }
+      }
 
-        editButton.style.display = 'none';
-        saveButton.style.display = 'inline-block';
-    });
+      displayUserName();
 
-    saveButton.addEventListener('click', () => {
+      logoutBTN.addEventListener("mouseup", () => logoutHandler());
+
+      function logoutHandler() {
+        sessionStorage.removeItem("activeUser");
+        window.location.href = "landingpage.html";
+      }
+
+      editButton.addEventListener("click", () => {
+        penNameText.style.display = "none";
+        legalNameText.style.display = "none";
+        emailText.style.display = "none";
+
+        penNameInput.style.display = "block";
+        legalNameInput.style.display = "block";
+        emailInput.style.display = "block";
+
+        editButton.style.display = "none";
+        saveButton.style.display = "inline-block";
+      });
+
+      saveButton.addEventListener("click", () => {
         penNameText.innerText = penNameInput.value;
         legalNameText.innerText = legalNameInput.value;
         emailText.innerText = emailInput.value;
 
-        penNameText.style.display = 'block';
-        legalNameText.style.display = 'block';
-        emailText.style.display = 'block';
+        penNameText.style.display = "block";
+        legalNameText.style.display = "block";
+        emailText.style.display = "block";
 
-        penNameInput.style.display = 'none';
-        legalNameInput.style.display = 'none';
-        emailInput.style.display = 'none';
+        penNameInput.style.display = "none";
+        legalNameInput.style.display = "none";
+        emailInput.style.display = "none";
 
-        saveButton.style.display = 'none';
-        editButton.style.display = 'inline-block';
-    });
-</script>
-</body>
+        saveButton.style.display = "none";
+        editButton.style.display = "inline-block";
+      });
+    </script>
+  </body>
 </html>

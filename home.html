@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
     <title>Random Readings</title>
     <style>
       * {
@@ -16,27 +22,56 @@
         background-color: white;
       }
 
+      h1 {
+        font-family: "Playfair Display", "Arial Narrow", Arial, sans-serif;
+      }
+
+      h2 {
+        font-family: "Playfair Display", "Arial Narrow", Arial, sans-serif;
+      }
+
+      h3 {
+        font-family: "Playfair Display", "Arial Narrow", Arial, sans-serif;
+      }
+
+      /* Header */
       .header {
         display: flex;
         justify-content: space-between;
-        padding: 20px;
         align-items: center;
+        background: #fff;
+        padding: 15px 20px;
+        border-bottom: 1px solid #ddd;
       }
 
-      .header h1 {
-        font-size: 24px;
+      .header .logo {
+        font-size: 1.5rem;
+        color: #005235;
+        font-family: "Playfair Display", "Arial Narrow", Arial, sans-serif;
+        font-weight: bold;
       }
 
-      .profile {
+      .header .user-menu {
         display: flex;
         align-items: center;
-        gap: 10px;
       }
 
-      .profile img {
+      .header .user-menu img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .header .user-menu .icon {
+        margin-left: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+        color: #005235;
+      }
+
+      .header .user-menu .icon:hover {
+        color: #002e1e;
       }
 
       .main-title {
@@ -150,11 +185,23 @@
     </style>
   </head>
   <body>
-    <header class="header">
-      <h1>Random Readings</h1>
-      <div class="profile">
-        <img src="#" alt="Profile" />
-        <span>Michael Scott</span>
+    <header>
+      <div class="header">
+        <div class="logo">Random Readings</div>
+        <div class="user-menu">
+          <a href="profile.html">
+            <img
+              id="user-icon"
+              src="imgs/img-header-profile.png"
+              alt="User Image"
+            />
+          </a>
+          <h3 id="user-name">Michael Scott</h3>
+          <div class="icon" id="logout-btn">
+            <img src="imgs/icon-logout.png" alt="Logout" />
+          </div>
+          <!-- Logout Icon -->
+        </div>
       </div>
     </header>
 
@@ -222,7 +269,32 @@
     var fantasyBtn = document.getElementById("fantasy");
     var mysteryBtn = document.getElementById("mystery");
     var continueBtn = document.getElementById("continue-btn");
-    sessionStorage.clear();
+    var logoutBTN = document.getElementById("logout-btn");
+    var username = document.getElementById("user-name");
+
+    function displayUserName() {
+      useremail = JSON.parse(sessionStorage.getItem("activeUser"));
+      allUserData = JSON.parse(localStorage.getItem("users"));
+
+      for (let i = 0; i < allUserData.length; i++) {
+        if (allUserData[i]["email"] == useremail) {
+          username.innerText = allUserData[i]["username"];
+        }
+      }
+    }
+
+    displayUserName();
+
+    if (sessionStorage.getItem("userpreference")) {
+      sessionStorage.removeItem("userpreference");
+    }
+
+    logoutBTN.addEventListener("mouseup", () => logoutHandler());
+
+    function logoutHandler() {
+      sessionStorage.removeItem("activeUser");
+      window.location.href = "landingpage.html";
+    }
 
     function continueBtnMonitor() {
       var data = JSON.parse(sessionStorage.getItem("userpreference"));
