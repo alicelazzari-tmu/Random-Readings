@@ -260,7 +260,7 @@
     <div class="popup-content">
       <h3>Welcome to Random Reading </h3>
       <p>the fun way to find some new to read!.</p>
-      <button id="enter-now-btn" class="close-popup">Entrar ahora</button>
+      <button id="enter-now-btn" class="close-popup"> IN TO READING NOW!</button>
     </div>
 
 
@@ -288,10 +288,12 @@
       welcomePopup.style.display = "flex"; // THIS CHANGE THE POPUP DISPLEY FRON NONE TO FLEX FOR THAT BE SHOW
     });
 
-    // this close the popup when the user made clip in go now 
+  // this close the popup when the user made clip in go now and  send to home 
     enterNowBtn.addEventListener("click", function() {
-      welcomePopup.style.display = "none"; // close the popup
+      welcomePopup.style.display = "none"; // THIS close the popup
+      window.location.href = "home.html"; // this send to  principal page 
     });
+
     
   </script>
 </body>
